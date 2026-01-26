@@ -1,0 +1,11 @@
+[260125 - 21:30]
+PID COntrol loop is as follows:
+
+Desired waypoint
+- desired heading
+- heading error
+- PID controller
+- angular velocity command
+- robot rotation
+- actual heading
+- feedback

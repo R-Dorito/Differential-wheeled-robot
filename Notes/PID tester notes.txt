@@ -1,0 +1,37 @@
+Notes [2026/01/22 Initial notes]:
+When I was preparing the PD for my lines, I had the dt set to 0.5.
+I didn't think too much of it until it gave me a terrible error. Steps = 200
+What happened and why did it go wrong?
+
+Well, my result was a giant squiggly line, 
+I believe this is due to the reaction times being too slow and it could have overshot the distances
+as dt = 0.01 worked fine
+
+The controller becomes unstable at larger timesteps due to discrete-time effects and delayed correction.
+THis can easily be adjusted by increasing the P and D sections, but I do need to increase it by a large amount and I get errors with theta when I do.
+
+
+Notes [2026/01/22 at 23:00]:
+kd being higher than kp is possible, however, it doesnt work too well as it just adjust according to noise errors.
+D value being greater than P value will produce crazy and jittery results. Best to keep D value between 10-30% of the P value.
+P value adjusts the omega radians and so we dont want the value to exceed the normal circle angles.
+So is it ever ideal to have a larger D value? Likely in the event of high speed controls
+
+Also note that having the P value set disproportionatly larger than the D value just makes things wobbly and
+everything is overshot, completely missing the target range with each itteration in time. 
+The system is reacting to everything by P * error and now theres an uncontrollable oscillation 
+
+
+Notes [2026/01/23 at 00:06]:
+I've updated the program to now compare the thetas oscillation and their angles. 
+Here I can see what differences are made to the angles and how with the PD the angle does eventually reach 0.
+It's pretty cool to see and visualise the changes in oscillation when the Kp or Kd change.
+
+adjusting the kd value to be larger gives me much more oscillations (kd =0.9 and kp 5.5)
+Additional notes about why my two angles dont start off at the same radian position, its because I decided to plot the graph after calculating the error.
+
+
+Notes [2026/01/23 at 00:41]:
+I've changed the graph to now show P, PD, and PID.
+Fascinating, you can really see all of it working together. P alone overshoots the results and doesnt come close to being theta 0
+PID is obviously more stable than P corrections. Changes are most notable during sharp changes in theta.

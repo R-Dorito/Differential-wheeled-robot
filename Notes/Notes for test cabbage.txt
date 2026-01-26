@@ -1,0 +1,10 @@
+value = 10
+for j in range(10):
+    for side in range(value):
+        for i in range(200):
+            v_left, v_right = wheel_speed(v_command, omega_command, track_width)
+            x, y, theta = step(x, y, theta, v_left, v_right, dt, track_width)
+            x_path.append(x)
+            y_path.append(y)
+        theta += 2*math.pi/value
+    value -= 1
