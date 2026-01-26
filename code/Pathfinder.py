@@ -60,7 +60,7 @@ x, y, theta = 0.0, 0.0, 0.0
 angular_velocity = 0.2
 robot_thiccness = 0.2
 dt = 0.01
-max_steps = 2000
+max_steps = 20000
 current_waypoint = 0
 # ------------------------------------------------
 
@@ -129,7 +129,7 @@ plt.axis("equal")
 plt.legend()
 plt.xlabel("x (m)")
 plt.ylabel("y (m)")
-plt.title("Waypoint Following (Geometry-Based)")
+plt.title("Robot Map Path 2D")
 
 plt.savefig("images/Robot_Path.png") #saving the file as linux is weird about show()
 # ------------------------------------------------
