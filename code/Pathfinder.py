@@ -53,7 +53,7 @@ def pid_controller(theta_desired, theta, Kp, Ki, Kd, prev_error, integral, dt):
     integral += error * dt                     
     derivative = (error - prev_error) / dt    
     output = Kp * error + Ki * integral + Kd * derivative  
-    return output, error
+    return output, error, integral
 
 # Declare Variables
 x, y, theta = 0.0, 0.0, 0.0
@@ -93,8 +93,9 @@ for _ in range(max_steps):
     theta += random.uniform(-0.05, 0.05)
 
     distance, theta_desired = setpoint_calc(x, y, x_waypoint, y_waypoint)
-    omega_controller, heading_error = pid_controller(theta_desired, theta, Kp, Ki, Kd, error_prev, integral, dt)
-    
+    omega_controller, heading_error, integral = pid_controller(theta_desired, theta, Kp, Ki, Kd, error_prev, integral, dt)
+    integral = max(min(integral, 1.0), -1.0) #clamped
+
     error_prev = heading_error
 
     #slow down as it approches the waypoint
