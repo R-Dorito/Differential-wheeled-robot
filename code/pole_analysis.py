@@ -19,7 +19,8 @@ def plot_heading_pid_poles(Kp, Ki, Kd):
     plt.scatter(poles.real, poles.imag, marker='x')
     plt.xlabel("Real")
     plt.ylabel("Imag")
-    plt.title("Heading PID Closed-Loop Poles")
+    plt.title(f"PID Poles - Kp: {Kp} Ki: {Ki} Kd: {Kd}")
+    # plt.text(0,0, f"Poles: Real {poles.real}, imaginary {poles.imag}", fontsize=20, color='g')
     plt.grid(True)
     plt.savefig(f"images/Poles/Poles-Kp{Kp}_Ki{Ki}_Kd{Kd}-{timestamp}.png")
 
