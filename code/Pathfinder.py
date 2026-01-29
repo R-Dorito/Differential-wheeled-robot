@@ -86,34 +86,40 @@ error_prev = 0.0
 
 
 #Main Loop time
-for _ in range(max_steps):
-    x_waypoint, y_waypoint = waypoints[current_waypoint]
+def run_pathfinder():
 
-    #its a bumy ride
-    theta += random.uniform(-0.05, 0.05)
+    for _ in range(max_steps):
+        x_waypoint, y_waypoint = waypoints[current_waypoint]
 
-    distance, theta_desired = setpoint_calc(x, y, x_waypoint, y_waypoint)
-    omega_controller, heading_error, integral = pid_controller(theta_desired, theta, Kp, Ki, Kd, error_prev, integral, dt)
-    integral = max(min(integral, 1.0), -1.0) #clamped
+        #its a bumy ride
+        
+        theta += random.uniform(-0.05, 0.05)
 
-    error_prev = heading_error
+        distance, theta_desired = setpoint_calc(x, y, x_waypoint, y_waypoint)
+        omega_controller, heading_error, integral = pid_controller(theta_desired, theta, Kp, Ki, Kd, error_prev, integral, dt)
+        integral = max(min(integral, 1.0), -1.0) #clamped
 
-    #slow down as it approches the waypoint
-    V = min(angular_velocity, 1.5 * distance) 
+        error_prev = heading_error
 
-    v_left, v_right = wheel_speed(V, omega_controller, robot_thiccness)
-    x, y, theta = step(x, y, theta, v_left, v_right, dt, robot_thiccness)
+        #slow down as it approches the waypoint
+        V = min(angular_velocity, 1.5 * distance) 
 
-    x_path.append(x)
-    y_path.append(y)
+        v_left, v_right = wheel_speed(V, omega_controller, robot_thiccness)
+        x, y, theta = step(x, y, theta, v_left, v_right, dt, robot_thiccness)
 
-    #if distance is less than the tollerance and the angle (+/-) is also within tollerance
-    if distance < pos_buffer and abs(heading_error) < angle_buffer:
-        current_waypoint += 1
-        if current_waypoint == len(waypoints):
-            print("Final waypoint reached")
-            break
+        x_path.append(x)
+        y_path.append(y)
+
+        #if distance is less than the tollerance and the angle (+/-) is also within tollerance
+        if distance < pos_buffer and abs(heading_error) < angle_buffer:
+            current_waypoint += 1
+            if current_waypoint == len(waypoints):
+                print("Final waypoint reached")
+                break
 # ------------------------------------------------
+
+if __name__ == "__main__":
+    run_pathfinder()
 
 #Graph PLotting
 plt.figure()
