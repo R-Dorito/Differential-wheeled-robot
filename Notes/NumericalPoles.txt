@@ -1,0 +1,16 @@
+[2026 01 29 - 22:54]
+P = 1.75 and 2
+I = 0.3
+D = 0.7
+
+Why is it that these poles produce a value that has only real numbers?
+Well, they are not oscillating.
+
+The other reason is due to s=2a−b±b2−4ac
+​​Where:
+b^2 − 4ac > 0 then theres only real numbers and no oscillation
+b^2 − 4ac = 0, double poles, neutral system
+b^2 − 4ac < 0 then its underdamped and its going to go out of control. 
+Two poles exist above and below the imaginary line axis
+
+Note, the system is more stable when poles move away from the central (jw) axis.

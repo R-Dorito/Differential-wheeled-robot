@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from Pathfinder import run_pathfinder
+from Pathfinder import Robot, waypoints, Kp, Ki, Kd
+from datetime import datetime
+
+robert = Robot()
 
 def plot_heading_pid_poles(Kp, Ki, Kd):
     a = 1 + Kd
@@ -8,6 +11,7 @@ def plot_heading_pid_poles(Kp, Ki, Kd):
     c = Ki
 
     poles = np.roots([a, b, c])
+    timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S")
 
     plt.figure()
     plt.axhline(0)
@@ -17,7 +21,9 @@ def plot_heading_pid_poles(Kp, Ki, Kd):
     plt.ylabel("Imag")
     plt.title("Heading PID Closed-Loop Poles")
     plt.grid(True)
-    plt.savefig("images/Poles/Pole_analysis.png")
+    plt.savefig(f"images/Poles/Poles-Kp{Kp}_Ki{Ki}_Kd{Kd}-{timestamp}.png")
+
 if __name__ == "__main__":
-    run_pathfinder()
-    plot_heading_pid_poles(Kp=3, Ki=0.1, Kd=0.7)
+    robert.run_pathfinder(waypoints)
+    plot_heading_pid_poles(Kp, Ki, Kd)
+    
