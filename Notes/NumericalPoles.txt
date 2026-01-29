@@ -6,7 +6,11 @@ D = 0.7
 Why is it that these poles produce a value that has only real numbers?
 Well, they are not oscillating.
 
-The other reason is due to s=2a−b±b2−4ac
+How do we get these values? 
+(1+Kd​)s2+Kp​s+Ki​=0
+
+The other reason is due to the quadratic equation, s= (−b ± sqrt(b^2−4ac)) / 2
+
 ​​Where:
 b^2 − 4ac > 0 then theres only real numbers and no oscillation
 b^2 − 4ac = 0, double poles, neutral system
