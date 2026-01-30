@@ -16,7 +16,7 @@ Some results are shown below:</p>
 <h2>What's next?</h2>
 <p>As this is a simulation only, I would like to include some more features in it to try out different things.</p>
 <ul>
-<li>Poles plotting to visualise the PID.</li>
+<li>Poles plotting to visualise the PID. [current task]</li>
 <li>Create a predefined noise generated terrain which remains constant each time.</li>
 <li>The ability to select waypoints after the main loop has been completed. At the moment, I am plotting these in a graph so it would be good to develop a live view of the model. The movements would ideally be interpolated.</li>
 <li>Eventually create this model in real life so I can model it live. This would be ideally be created with an arduino and a DC motor wheel.</li>
